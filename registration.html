@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+        }
+        .form-container {
+            flex: 1;
+            padding: 10px;
+        }
+        h2 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+        }
+        input[type="text"], select {
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .result-container {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+        }
+        #displayData {
+            text-align: left;
+        }
+        #userImage {
+            width: 100px;
+            height: 100px;
+            margin: 10px auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2>Registration Form</h2>
+            <form id="registrationForm">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" required>
+
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" required>
+
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" required>
+
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <div class="result-container">
+            <div id="displayData"></div>
+            <img id="userImage" src="" alt="User Image">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('registrationForm');
+            const displayData = document.getElementById('displayData');
+            const userImage = document.getElementById('userImage');
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const firstName = document.getElementById('firstName').value;
+                const lastName = document.getElementById('lastName').value;
+                const email = document.getElementById('email').value;
+                const gender = document.getElementById('gender').value;
+
+                const userData = `
+                    <h3>Entered Data:</h3>
+                    <p><strong>First Name:</strong> ${firstName}</p>
+                    <p><strong>Last Name:</strong> ${lastName}</p>
+                    <p><strong>Email:</strong> ${email}</p>
+                    <p><strong>Gender:</strong> ${gender}</p>
+                `;
+
+                displayData.innerHTML = userData;
+
+                // Display the corresponding user image
+                if (gender === 'male') {
+                    userImage.src = 'male.png';
+                } else if (gender === 'female') {
+                    userImage.src = 'female.png';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
